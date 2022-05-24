@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "author": "Brian M Hunt",
-  "private": true
+  "private": false,
+  "files": [
+    "bin/*"
+  ]
 }
