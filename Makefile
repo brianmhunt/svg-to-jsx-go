@@ -1,4 +1,5 @@
 
+src := cmd/svg-to-jsx/main.go
 
 # Strip debug
 GO_FLAGS += "-ldflags=-s -w"
@@ -14,22 +15,23 @@ all: \
 bin:
 	mkdir -p bin
 
+$(src): 
 
-bin/svg-to-jsx-linux-arm64: bin
+bin/svg-to-jsx-linux-arm64: bin $(src)
 		$(MAKE) GOOS=linux GOARCH=arm64 binary
 
-bin/svg-to-jsx-linux-amd64: bin
+bin/svg-to-jsx-linux-amd64: bin $(src)
 		$(MAKE) GOOS=linux GOARCH=amd64 binary
 
-bin/svg-to-jsx-darwin-amd64: bin
+bin/svg-to-jsx-darwin-amd64: bin $(src)
 		$(MAKE) GOOS=darwin GOARCH=amd64 binary
 
-bin/svg-to-jsx-darwin-arm64: bin
+bin/svg-to-jsx-darwin-arm64: bin $(src)
 		$(MAKE) GOOS=darwin GOARCH=arm64 binary
 
 
 
-binary:
+binary: $(src)
 	CGO_ENABLED=0 GOOS="$(GOOS)" GOARCH="$(GOARCH)" go build $(GO_FLAGS) -o "bin/svg-to-jsx-$(GOOS)-$(GOARCH)" ./cmd/svg-to-jsx
 
 clean:

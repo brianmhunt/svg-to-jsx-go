@@ -1,4 +1,5 @@
 *.swp
-sample/*.tsx
+*.tsx
+*.jsx
 .vscode/
 bin/

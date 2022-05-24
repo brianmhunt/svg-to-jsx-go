@@ -28,7 +28,7 @@ func pureSvg(svgPath string) string {
 
 func svgToJsx(dir, outdir, filename string, verbose bool) {
 	basename := strings.TrimSuffix(filename, filepath.Ext(filename))
-	outFilename := basename + ".tsx"
+	outFilename := basename + ".jsx"
 	if verbose {
 		fmt.Printf("[%s] %s => %s/%s\n", dir, filename, outdir, outFilename)
 	}
@@ -39,9 +39,9 @@ func svgToJsx(dir, outdir, filename string, verbose bool) {
 	}
 	defer tf.Close()
 
-	tsx := `export default ` + pureSvg(filepath.Join(dir, filename))
+	jsx := `export default ` + pureSvg(filepath.Join(dir, filename))
 
-	_, err = tf.WriteString(tsx)
+	_, err = tf.WriteString(jsx)
 	if err != nil {
 		log.Fatal(err)
 	}
